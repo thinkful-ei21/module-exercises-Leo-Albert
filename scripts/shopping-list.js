@@ -67,7 +67,6 @@ const shoppingList = (function(){
       console.log('err.message')
     }
 
-    //store.items.push({ id: cuid(), name: itemName, checked: false });
   }
   
   function handleNewItemSubmit() {
