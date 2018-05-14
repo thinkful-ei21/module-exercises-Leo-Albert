@@ -15,13 +15,17 @@ const store = (function () {
   const searchTerm = '';
 
   const findByID = function(id) {
-    store.items.find(((each) => each.id === id));
+    return store.items.find(function(each){return each.id === id;});
   };
 
   const addItem = function(name) {
     try {
+      // Item.validateName(name);
+      // store.items.push(Item.create(name));
+  
       Item.validateName(name);
       store.items.push(Item.create(name));
+      shoppingList.render();
     }
     catch(err) {
       console.log(err.message);
@@ -30,6 +34,7 @@ const store = (function () {
 
   const findAndToggleChecked = function(id) {
     let foundItem = this.findByID(id);
+    console.log(foundItem);
     foundItem.checked = !foundItem.checked;
   };
 
@@ -45,7 +50,7 @@ const store = (function () {
   };
 
   const findAndDelete = function(id) {
-    const index = store.items.findIndex(item => item.id === id);
+    const index = store.items.findIndex(function(item){return item.id === id;});
     store.items.splice(index, 1);
   };
 
