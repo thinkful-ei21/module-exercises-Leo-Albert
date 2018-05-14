@@ -20,9 +20,6 @@ const store = (function () {
 
   const addItem = function(name) {
     try {
-      // Item.validateName(name);
-      // store.items.push(Item.create(name));
-  
       Item.validateName(name);
       store.items.push(Item.create(name));
       shoppingList.render();
@@ -32,10 +29,8 @@ const store = (function () {
     }
   };
 
-  const findAndToggleChecked = function(id) {
-    let foundItem = this.findByID(id);
-    console.log(foundItem);
-    foundItem.checked = !foundItem.checked;
+  const findAndToggleChecked = function() {
+    store.hideCheckedItems = !store.hideCheckedItems;
   };
 
   const findAndUpdate = function(id, newName) {
@@ -54,13 +49,16 @@ const store = (function () {
     store.items.splice(index, 1);
   };
 
-
+  const setSearchTerm = function(val) {
+    store.searchTerm = val;
+  };
 
   return {
     items,
     hideCheckedItems,
     searchTerm,
     findByID,
+    setSearchTerm,
     addItem,
     findAndToggleChecked,
     findAndUpdate,
